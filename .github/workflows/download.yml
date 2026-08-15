@@ -15,9 +15,15 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Download files
+      - name: Check dependencies
+        run: |
+          jq --version
+          curl --version
+
+      - name: Download and validate files
         run: |
           mkdir -p data
+          mkdir -p .tmp
 
           files=(
             "models.json"
@@ -28,23 +34,62 @@ jobs:
             "comparisons.json"
           )
 
+          failed=0
+
           for name in "${files[@]}"; do
             url="https://benchlm.ai/data/$name"
+            tmp=".tmp/$name"
 
-            echo "⬇️ Downloading $url"
+            echo ""
+            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+            echo "⬇️ Downloading $name"
+            echo "🔗 $url"
+            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 
-            if curl -L -f --retry 3 --retry-delay 2 \
-              "$url" -o "data/$name"; then
-              echo "✅ $name"
-            else
-              echo "❌ Failed to download $name"
+            if ! curl -L -f --retry 3 --retry-delay 2 \
+              --connect-timeout 15 \
+              --max-time 120 \
+              "$url" -o "$tmp"; then
+
+              echo "❌ Download failed: $name"
+              failed=1
+              rm -f "$tmp"
+              continue
             fi
+
+            echo "🔍 Validating JSON..."
+
+            if ! jq empty "$tmp" 2>/dev/null; then
+              echo "❌ Invalid JSON: $name"
+              failed=1
+              rm -f "$tmp"
+              continue
+            fi
+
+            if [ ! -s "$tmp" ]; then
+              echo "❌ Empty file: $name"
+              failed=1
+              rm -f "$tmp"
+              continue
+            fi
+
+            mv "$tmp" "data/$name"
+
+            echo "✅ $name downloaded and validated"
           done
 
-      - name: Show downloaded files
-        run: |
-          echo "📁 Files in data/:"
+          rm -rf .tmp
+
+          echo ""
+          echo "📁 Current data files:"
           ls -lh data/
+
+          if [ "$failed" -ne 0 ]; then
+            echo ""
+            echo "⚠️ One or more files failed."
+            echo "Existing valid files were preserved."
+            exit 1
+          fi
 
       - name: Commit and push if changed
         run: |
@@ -56,6 +101,6 @@ jobs:
           if git diff --staged --quiet; then
             echo "ℹ️ No changes"
           else
-            git commit -m "Automated update: $(date +'%Y-%m-%d %H:%M')"
+            git commit -m "Automated update: $(date -u +'%Y-%m-%d %H:%M UTC')"
             git push
           fi
