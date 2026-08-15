@@ -1,63 +1,59 @@
-BenchLM Mirror
+# BenchLM Mirror
 
-<div align="center">🇬🇧 English · 🇷🇺 Русский · 🇨🇳 中文 · 🇪🇸 Español · 🇩🇪 Deutsch · 🇫🇷 Français · 🇯🇵 日本語 · 🇰🇷 한국어
+<div align="center">
 
-</div>> Автоматически обновляемое зеркало публичных данных BenchLM.
+[🇬🇧 English](README.md) · 🇷🇺 Русский · [🇨🇳 中文](README.zh.md) · [🇪🇸 Español](README.es.md) · [🇩🇪 Deutsch](README.de.md) · [🇫🇷 Français](README.fr.md) · [🇯🇵 日本語](README.ja.md) · [🇰🇷 한국어](README.ko.md)
 
+</div>
 
+> Автоматически обновляемое зеркало публичных данных [BenchLM](https://benchlm.ai/).
 
-  
-
+[![Обновление](https://img.shields.io/badge/обновление-ежедневно-blue?style=for-the-badge)](https://github.com/seregannj/benchlmirror/actions)
+[![Источник](https://img.shields.io/badge/источник-BenchLM-black?style=for-the-badge)](https://benchlm.ai/data)
+[![Файлы](https://img.shields.io/badge/данные-6%20JSON-green?style=for-the-badge)](./data/)
 
 ---
 
-🎯 Зачем это?
+## 🎯 Зачем это?
 
 BenchLM предоставляет данные об ИИ-моделях: рейтинги, бенчмарки, цены, скорость и сравнения.
 
-Этот репозиторий создан как простое и удобное зеркало этих данных, которое можно использовать в сторонних проектах.
+Этот репозиторий создан как **простое и удобное зеркало этих данных**, которое можно использовать в сторонних проектах.
 
-Что можно делать?
+### Что можно делать?
 
-📥 Получать актуальные данные — файлы автоматически обновляются раз в день.
-
-🕐 Отслеживать историю изменений — GitHub сохраняет предыдущие версии файлов.
-
-🔗 Использовать данные напрямую — JSON-файлы доступны через GitHub Raw.
-
-🚀 Подключать данные к своим проектам — для получения JSON не требуется создавать собственный сервер.
-
-📊 Создавать собственные интерфейсы и аналитику на основе данных BenchLM.
-
+- 📥 **Получать актуальные данные** — файлы автоматически обновляются раз в день.
+- 🕐 **Отслеживать историю изменений** — GitHub сохраняет предыдущие версии файлов.
+- 🔗 **Использовать данные напрямую** — JSON-файлы доступны через GitHub Raw.
+- 🚀 **Подключать данные к своим проектам** — для получения JSON не требуется создавать собственный сервер.
+- 📊 **Создавать собственные интерфейсы и аналитику** на основе данных BenchLM.
 
 Таким образом, репозиторий может использоваться как простой источник данных BenchLM для сайтов, приложений, ботов, аналитических инструментов и других проектов.
 
+---
+
+## 📊 Данные
+
+| Файл | Описание | Raw |
+|:---|:---|:---:|
+| [`models.json`](./data/models.json) | Информация об ИИ-моделях | [Открыть](https://raw.githubusercontent.com/seregannj/benchlmirror/main/data/models.json) |
+| [`leaderboard.json`](./data/leaderboard.json) | Рейтинг моделей | [Открыть](https://raw.githubusercontent.com/seregannj/benchlmirror/main/data/leaderboard.json) |
+| [`benchmarks.json`](./data/benchmarks.json) | Информация о бенчмарках | [Открыть](https://raw.githubusercontent.com/seregannj/benchlmirror/main/data/benchmarks.json) |
+| [`pricing.json`](./data/pricing.json) | Цены на модели | [Открыть](https://raw.githubusercontent.com/seregannj/benchlmirror/main/data/pricing.json) |
+| [`speed.json`](./data/speed.json) | Скорость и производительность моделей | [Открыть](https://raw.githubusercontent.com/seregannj/benchlmirror/main/data/speed.json) |
+| [`comparisons.json`](./data/comparisons.json) | Сравнения моделей | [Открыть](https://raw.githubusercontent.com/seregannj/benchlmirror/main/data/comparisons.json) |
 
 ---
 
-📊 Данные
+## 🔗 Быстрый доступ
 
-Файл	Описание	Raw
+Все данные находятся в директории [`data/`](./data/).
 
-models.json	Информация об ИИ-моделях	Открыть
-leaderboard.json	Рейтинг моделей	Открыть
-benchmarks.json	Информация о бенчмарках	Открыть
-pricing.json	Цены на модели	Открыть
-speed.json	Скорость и производительность моделей	Открыть
-comparisons.json	Сравнения моделей	Открыть
+### GitHub Raw
 
+Например, [`models.json`](./data/models.json):
 
-
----
-
-🔗 Быстрый доступ
-
-Все данные находятся в директории data/.
-
-GitHub Raw
-
-Например, models.json:
-
+~~~text
 https://raw.githubusercontent.com/seregannj/benchlmirror/main/data/models.json
 
 Другие файлы доступны по аналогичному адресу:
@@ -135,9 +131,7 @@ data/
    ↓
 Git commit
 
-Перед заменой существующего файла данные проходят проверку.
-
-Если загрузка или проверка неудачна, предыдущая рабочая версия файла сохраняется.
+Если загрузка файла не удалась, предыдущая версия файла не заменяется.
 
 Обновление также можно запустить вручную через вкладку Actions.
 
@@ -213,3 +207,5 @@ MIT License не распространяется автоматически н�
 <div align="center">Data from BenchLM
 
 BenchLM · GitHub · Источник данных
+
+</div>
