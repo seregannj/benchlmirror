@@ -55,3 +55,155 @@ BenchLM предоставляет полезные данные об ИИ-мо�
 
 ```text
 https://raw.githubusercontent.com/seregannj/benchlmirror/main/data/models.json
+
+Просто замените models.json на нужный файл.
+
+GitHub API
+
+Файлы также можно получать через GitHub Contents API:
+
+https://api.github.com/repos/seregannj/benchlmirror/contents/data/models.json
+
+> ⚠️ При использовании GitHub API учитывайте ограничения GitHub API и условия их использования.
+
+
+
+
+---
+
+💻 Использование
+
+Python
+
+import requests
+
+url = "https://raw.githubusercontent.com/seregannj/benchlmirror/main/data/models.json"
+
+response = requests.get(url)
+response.raise_for_status()
+
+data = response.json()
+
+print(data)
+
+JavaScript
+
+const response = await fetch(
+  "https://raw.githubusercontent.com/seregannj/benchlmirror/main/data/models.json"
+);
+
+if (!response.ok) {
+  throw new Error(`HTTP ${response.status}`);
+}
+
+const data = await response.json();
+
+console.log(data);
+
+cURL
+
+curl -L https://raw.githubusercontent.com/seregannj/benchlmirror/main/data/models.json
+
+
+---
+
+🔄 Автоматическое обновление
+
+Данные автоматически загружаются с BenchLM раз в день с помощью GitHub Actions.
+
+Процесс обновления:
+
+BenchLM
+   ↓
+Загрузка JSON
+   ↓
+Проверка файла
+   ↓
+Проверка JSON
+   ↓
+data/
+   ↓
+Git commit
+
+Перед заменой существующего файла данные проходят проверку. Если загрузка или проверка неудачна, предыдущая рабочая версия файла сохраняется.
+
+Обновление также можно запустить вручную:
+
+Actions → Daily download from BenchLM → Run workflow
+
+
+---
+
+🕐 История изменений
+
+Все изменения данных сохраняются в истории Git.
+
+Это позволяет:
+
+просматривать предыдущие версии файлов;
+
+сравнивать изменения между обновлениями;
+
+отслеживать изменения рейтингов, цен и других данных;
+
+при необходимости восстанавливать предыдущую версию.
+
+
+История доступна во вкладке Commits репозитория.
+
+
+---
+
+📁 Структура
+
+benchlmirror/
+│
+├── data/
+│   ├── models.json
+│   ├── leaderboard.json
+│   ├── benchmarks.json
+│   ├── pricing.json
+│   ├── speed.json
+│   └── comparisons.json
+│
+├── .github/
+│   └── workflows/
+│       └── update.yml
+│
+├── LICENSE
+├── README.md
+└── README.ru.md
+
+
+---
+
+🔗 Источник
+
+Источник данных:
+
+BenchLM
+
+Этот репозиторий является независимым зеркалом и не связан с BenchLM напрямую.
+
+
+---
+
+⚖️ Лицензия и данные
+
+Код и конфигурация данного репозитория распространяются под MIT License.
+
+Зеркалируемые данные принадлежат их первоначальному источнику.
+
+MIT License не распространяется автоматически на данные BenchLM.
+
+Перед использованием данных ознакомьтесь с условиями и требованиями их первоначального источника.
+
+
+---
+
+<div align="center">Data from BenchLM
+
+BenchLM · GitHub · Источник данных
+
+</div>
+```
