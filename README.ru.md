@@ -55,20 +55,25 @@ BenchLM предоставляет данные об ИИ-моделях: рей
 
 ~~~text
 https://raw.githubusercontent.com/seregannj/benchlmirror/main/data/models.json
+~~~
 
 Другие файлы доступны по аналогичному адресу:
 
+~~~text
 https://raw.githubusercontent.com/seregannj/benchlmirror/main/data/leaderboard.json
 https://raw.githubusercontent.com/seregannj/benchlmirror/main/data/benchmarks.json
 https://raw.githubusercontent.com/seregannj/benchlmirror/main/data/pricing.json
 https://raw.githubusercontent.com/seregannj/benchlmirror/main/data/speed.json
 https://raw.githubusercontent.com/seregannj/benchlmirror/main/data/comparisons.json
+~~~
 
 GitHub API
 
 Файлы также можно получать через GitHub Contents API:
 
+~~~text
 https://api.github.com/repos/seregannj/benchlmirror/contents/data/models.json
+~~~
 
 > ⚠️ При использовании GitHub API учитывайте ограничения и условия использования GitHub API.
 
@@ -79,7 +84,7 @@ https://api.github.com/repos/seregannj/benchlmirror/contents/data/models.json
 
 💻 Использование
 
-Python
+~~~Python
 
 import requests
 
@@ -91,8 +96,9 @@ response.raise_for_status()
 data = response.json()
 
 print(data)
+~~~
 
-JavaScript
+~~~JavaScript
 
 const response = await fetch(
   "https://raw.githubusercontent.com/seregannj/benchlmirror/main/data/models.json"
@@ -109,7 +115,7 @@ console.log(data);
 cURL
 
 curl -L https://raw.githubusercontent.com/seregannj/benchlmirror/main/data/models.json
-
+~~~
 
 ---
 
