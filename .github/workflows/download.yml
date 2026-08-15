@@ -21,15 +21,11 @@ jobs:
 
           files=(
             "models.json"
-            "scores.json"
             "leaderboard.json"
             "benchmarks.json"
             "pricing.json"
             "speed.json"
             "comparisons.json"
-            "updates.json"
-            "llms.txt"
-            "llms-full.txt"
           )
 
           for name in "${files[@]}"; do
