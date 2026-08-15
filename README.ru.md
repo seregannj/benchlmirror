@@ -1,6 +1,6 @@
 BenchLM Mirror
 
-<div align="center">🇬🇧 · 🇷🇺 · 🇨🇳 · 🇪🇸 · 🇩🇪 · 🇫🇷 · 🇯🇵 · 🇰🇷
+<div align="center">🇬🇧 English · 🇷🇺 Русский · 🇨🇳 中文 · 🇪🇸 Español · 🇩🇪 Deutsch · 🇫🇷 Français · 🇯🇵 日本語 · 🇰🇷 한국어
 
 </div>> Автоматически обновляемое зеркало публичных данных BenchLM.
 
@@ -29,6 +29,8 @@ BenchLM предоставляет данные об ИИ-моделях: рей
 
 📊 Создавать собственные интерфейсы и аналитику на основе данных BenchLM.
 
+
+Таким образом, репозиторий может использоваться как простой источник данных BenchLM для сайтов, приложений, ботов, аналитических инструментов и других проектов.
 
 
 ---
@@ -61,13 +63,9 @@ https://raw.githubusercontent.com/seregannj/benchlmirror/main/data/models.json
 Другие файлы доступны по аналогичному адресу:
 
 https://raw.githubusercontent.com/seregannj/benchlmirror/main/data/leaderboard.json
-
 https://raw.githubusercontent.com/seregannj/benchlmirror/main/data/benchmarks.json
-
 https://raw.githubusercontent.com/seregannj/benchlmirror/main/data/pricing.json
-
 https://raw.githubusercontent.com/seregannj/benchlmirror/main/data/speed.json
-
 https://raw.githubusercontent.com/seregannj/benchlmirror/main/data/comparisons.json
 
 GitHub API
@@ -91,7 +89,8 @@ import requests
 
 url = "https://raw.githubusercontent.com/seregannj/benchlmirror/main/data/models.json"
 
-response = requests.get(url) response.raise_for_status()
+response = requests.get(url)
+response.raise_for_status()
 
 data = response.json()
 
@@ -99,9 +98,13 @@ print(data)
 
 JavaScript
 
-const response = await fetch( "https://raw.githubusercontent.com/seregannj/benchlmirror/main/data/models.json" );
+const response = await fetch(
+  "https://raw.githubusercontent.com/seregannj/benchlmirror/main/data/models.json"
+);
 
-if (!response.ok) { throw new Error(HTTP ${response.status}); }
+if (!response.ok) {
+  throw new Error(`HTTP ${response.status}`);
+}
 
 const data = await response.json();
 
@@ -121,15 +124,15 @@ curl -L https://raw.githubusercontent.com/seregannj/benchlmirror/main/data/model
 Процесс обновления:
 
 BenchLM
-↓
+   ↓
 Загрузка JSON
-↓
+   ↓
 Проверка файла
-↓
+   ↓
 Проверка JSON
-↓
+   ↓
 data/
-↓
+   ↓
 Git commit
 
 Перед заменой существующего файла данные проходят проверку.
@@ -163,7 +166,22 @@ Git commit
 
 📁 Структура
 
-benchlmirror/ │ ├── data/ │   ├── models.json │   ├── leaderboard.json │   ├── benchmarks.json │   ├── pricing.json │   ├── speed.json │   └── comparisons.json │ ├── .github/ │   └── workflows/ │ ├── LICENSE ├── README.md └── README.ru.md
+benchlmirror/
+│
+├── data/
+│   ├── models.json
+│   ├── leaderboard.json
+│   ├── benchmarks.json
+│   ├── pricing.json
+│   ├── speed.json
+│   └── comparisons.json
+│
+├── .github/
+│   └── workflows/
+│
+├── LICENSE
+├── README.md
+└── README.ru.md
 
 
 ---
@@ -195,5 +213,3 @@ MIT License не распространяется автоматически н�
 <div align="center">Data from BenchLM
 
 BenchLM · GitHub · Источник данных
-
-</div>
