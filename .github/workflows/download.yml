@@ -1,0 +1,65 @@
+name: Daily download from BenchLM
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+jobs:
+  download:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Download files
+        run: |
+          mkdir -p data
+
+          files=(
+            "models.json"
+            "scores.json"
+            "leaderboard.json"
+            "benchmarks.json"
+            "pricing.json"
+            "speed.json"
+            "comparisons.json"
+            "updates.json"
+            "llms.txt"
+            "llms-full.txt"
+          )
+
+          for name in "${files[@]}"; do
+            url="https://benchlm.ai/data/$name"
+
+            echo "⬇️ Downloading $url"
+
+            if curl -L -f --retry 3 --retry-delay 2 \
+              "$url" -o "data/$name"; then
+              echo "✅ $name"
+            else
+              echo "❌ Failed to download $name"
+            fi
+          done
+
+      - name: Show downloaded files
+        run: |
+          echo "📁 Files in data/:"
+          ls -lh data/
+
+      - name: Commit and push if changed
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+
+          git add data/
+
+          if git diff --staged --quiet; then
+            echo "ℹ️ No changes"
+          else
+            git commit -m "Automated update: $(date +'%Y-%m-%d %H:%M')"
+            git push
+          fi
